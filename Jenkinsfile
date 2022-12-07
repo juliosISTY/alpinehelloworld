@@ -1,5 +1,5 @@
 pipeline {
-    environement {
+    environment {
         IMAGE_NAME = "alpinehelloworld"
         IMAGE_TAG = "latest"
         STAGING = "eazytraining-staging"
@@ -56,7 +56,7 @@ pipeline {
                 expression {GIT_BRANCH == 'origin/master'}
             }
             agent any
-            environement {
+            environment {
                 HEROKU_API_KEY = credentials('heroku_api_key')
             }
             steps {
@@ -76,7 +76,7 @@ pipeline {
                 expression {GIT_BRANCH == 'origin/master'}
             }
             agent any
-            environement {
+            environment {
                 HEROKU_API_KEY = credentials('heroku_api_key')
             }
             steps {
