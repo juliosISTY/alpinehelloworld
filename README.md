@@ -10,11 +10,12 @@ IMAGE_NAME: alpinehelloworld
 IMAGE_TAG : latest
 
 
-
+'''
 #! /bin/bash
 git clone https://github.com/juliosISTY/alpinehelloworld.git
 cd alpinehelloworld
 docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+'''
 
 Adding http_request plugin
 
