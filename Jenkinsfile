@@ -3,7 +3,7 @@
 
 pipeline {
     environment {
-        ID_DOCKER = "julios"
+        ID_DOCKER = "julios2"
         IMAGE_NAME = "alpinehelloworld"
         IMAGE_TAG = "latest"
         APP_NAME = "jules"
