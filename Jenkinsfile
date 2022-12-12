@@ -1,12 +1,12 @@
 /* import shared library */
-@Library('eazytraining-shared-library')_
+@Library('juliosISTY-shared-library')_
 
 pipeline {
     environment {
         IMAGE_NAME = "alpinehelloworld"
         IMAGE_TAG = "latest"
-        STAGING = "eazytraining-staging"
-        PRODUCTION = "eazytraining-production"
+        STAGING = "juliosISTY-staging"
+        PRODUCTION = "juliosISTY-production"
     }    
     agent none
     stages {
