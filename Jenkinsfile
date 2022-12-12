@@ -7,6 +7,10 @@ pipeline {
         IMAGE_TAG = "latest"
         STAGING = "juliosISTY-staging"
         PRODUCTION = "juliosISTY-production"
+        STG_API_ENDPOINT = "ip10-0-1-3-cebne3oj3e60g67j2k40-1993.direct.docker.labs.eazytraining.fr"
+        STG_APP_ENDPOINT = "ip10-0-1-3-cebne3oj3e60g67j2k40-80.direct.docker.labs.eazytraining.fr"
+        PROD_API_ENDPOINT = "ip10-0-1-4-cebne3oj3e60g67j2k40-1993.direct.docker.labs.eazytraining.fr"
+        PROD_APP_ENDPOINT = "ip10-0-1-4-cebne3oj3e60g67j2k40-80.direct.docker.labs.eazytraining.fr"
     }    
     agent none
     stages {
@@ -59,16 +63,12 @@ pipeline {
                 expression {GIT_BRANCH == 'origin/master'}
             }
             agent any
-            environment {
-                HEROKU_API_KEY = credentials('heroku_api_key')
-            }
+
             steps {
                 script {
                     sh '''
-                        heroku conatainer:login
-                        heroku create $STAGING || echo "project already exist"
-                        heroku container:push -a $STAGING web
-                        heroku container:release -a $STAGING web
+                       echo  {\\"your_name\\":\\"julios\\",\\"container_image\\":\\"julios/$IMAGE_NAME:$IMAGE_TAG\\", \\"external_port\\":\\"80\\", \\"internal_port\\":\\"5000\\"}  > data.json 
+                       curl -X POST http://$STG_API_ENDPOINT/staging -H 'Content-Type: application/json'  --data-binary @data.json 
                     '''
                     
                 }
@@ -85,10 +85,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        heroku conatainer:login
-                        heroku create $PRODUCTION || echo "project already exist"
-                        heroku container:push -a $PRODUCTION web
-                        heroku container:release -a $PRODUCTION web
+                        curl -X POST http://$PROD_API_ENDPOINT/prod -H 'Content-Type: application/json' -d '{"your_name":"julios","container_image":"julios/$IMAGE_NAME:$IMAGE_TAG", "external_port":"80", "internal_port":"5000"}'
                     '''
                     
                 }
