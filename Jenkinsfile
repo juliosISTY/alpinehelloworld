@@ -3,7 +3,7 @@
 
 pipeline {
     environment {
-        ID_DOCKER = "${ID_DOCKER_PARAMS}"
+        ID_DOCKER = "julios"
         IMAGE_NAME = "alpinehelloworld"
         IMAGE_TAG = "latest"
         APP_NAME = "jules"
