@@ -1,6 +1,12 @@
 # alpinehelloworld
 An Alpine-based Docker example
 
+**Used plugins**
+- http_request
+- github integration
+- docker-buid steps
+- slack notification
+- role-based authaurization strategy
 
 ## Creation of free-style Jobs
 
@@ -62,6 +68,7 @@ curl http://localhost | grep -q "Hello world!"
 docker stop ${IMAGE_NAME}
 docker rm ${IMAGE_NAME}
 ```
+## Creation of pipeline Jobs
 
 ### Job: deployment (with slack notification)
 
